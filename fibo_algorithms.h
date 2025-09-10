@@ -57,4 +57,63 @@ long mem_fibo(long n)
 }
 
 
+long count_fibo_rec(long n,long count)
+{
+    count += 1;
+    if (n < 0)
+    {
+        fprintf(stderr, "invalid number");
+        return -1;
+    }
+
+    if (n == 1 || n == 0)
+    {
+        return count;
+    }
+
+    return count_fibo_rec(n - 1, count) + count_fibo_rec(n - 2, count);
+}
+
+long count_fibo(long n) 
+{
+    long count = 0;
+    long f[n + 1];
+    f[0] = 0;
+    f[1] = 1;
+
+    for (long i = 2; i <= n; i++) 
+    {
+        count++;
+        f[i] = f[i - 1] + f[i - 2];
+    }
+    return count;
+}
+
+long count_lookup_fibo(long *f, long n, long *count)
+{
+    (*count)++;
+    if (f[n] >= 0)
+    {
+        return f[n];
+    }
+    if (n <= 1)
+    {
+        f[n] = n;
+    }
+    else {
+        f[n] = count_lookup_fibo(f, n - 1, count) + count_lookup_fibo(f, n - 2, count);
+    }
+    return f[n];
+}
+
+long count_mem_fibo(long n, long *count)
+{
+    long f[n + 1];
+    for (long i = 0; i <= n; i++)
+    {
+        f[i] = -1;
+    }
+    return count_lookup_fibo(f, n, count);
+}
+
 
