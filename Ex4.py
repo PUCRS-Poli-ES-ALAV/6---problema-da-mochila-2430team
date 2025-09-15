@@ -31,4 +31,8 @@ def Knapsack(lista_de_items:list, capacidade:int):
     print("Ops:",ops)
     print("Time:",(datetime.now()-t).microseconds,"micro_s ")
     return mat[-1][-1]
-print(Knapsack([(5,2),(2,4),(2,2),(1,3)], 7))
+#pesos = [56, 59, 80, 64, 75, 17]
+#valores = [50, 50, 64, 46, 50, 5]
+pesos = [23, 31, 29, 44, 53, 38, 63, 85, 89, 82]
+valores = [92, 57, 49, 68, 60, 43, 67, 84, 87, 72]
+print(Knapsack(list(zip(pesos,valores)), 190))

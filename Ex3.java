@@ -6,12 +6,17 @@ class Ex3
         //Pesos:  56, 59, 80, 64, 75, 17
         //Valores: 50, 50, 64, 46, 50, 05
 
-        Item a = new Item(56, 50);
-        Item b = new Item(59, 50);
-        Item c = new Item(80, 64);
-        Item d = new Item(64, 46);
-        Item e = new Item(75, 50);
-        Item f = new Item(17, 05);
+        Item a = new Item(23, 31);
+        Item b = new Item(31, 57);
+        Item c = new Item(29, 49);
+        Item d = new Item(44, 68);
+        Item e = new Item(53, 60);
+        Item f = new Item(38, 43);
+        Item g = new Item(63, 67);
+        Item h = new Item(85, 84);
+        Item i = new Item(89, 87);
+        Item j = new Item(82, 72);
+
         ArrayList<Item> items = new ArrayList<>();
         items.add(a);
         items.add(b);
@@ -19,8 +24,13 @@ class Ex3
         items.add(d);
         items.add(e);
         items.add(f);
-        Knapsack k = new Knapsack(items, 190);
+        items.add(g);
+        items.add(h);
+        items.add(i);
+        items.add(j);
+        Knapsack k = new Knapsack(items, 165);
         System.out.println(k.run());
+        System.out.println(k.iterations);
     }
 }
 
@@ -92,11 +102,13 @@ class Knapsack
 {
     private ArrayList<Item> items;
     private int capacidade;
+    public long iterations;
 
     public Knapsack(ArrayList<Item> valores, int capacidade)
     {
         this.items = valores;
         this.capacidade = capacidade;
+        this.iterations = 0;
     }
 
     public Solucao run() {
@@ -122,6 +134,7 @@ class Knapsack
 
     public Solucao buscaLargura(Solucao parcial)
     {
+        this.iterations++;
         Solucao best = new Solucao(new ArrayList<>());
         ArrayList<Solucao> atuais = new ArrayList<>();
         boolean canGoDeeper = false;
